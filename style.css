@@ -7,7 +7,7 @@ body {
 
 main {
     margin: auto;
-    max-width: 40rem;
+    max-width: 50rem;
 }
 
 img {
@@ -30,6 +30,8 @@ html {
     --size-six: calc(var(--size-five) * var(--ratio));
     --size-one-smaller: calc(1rem / var(--ratio));
     --size-two-smaller: calc(var(--size-one) / var(--ratio));
+    --size-heading-one: 2.5rem;
+    --size-heading-two: 3.5rem;
 
     line-height: 1.5;
 }
@@ -115,6 +117,7 @@ h6 {
     font-style: italic;
     font-size: var(--size-one);
     margin: .25rem;
+    margin-left: 1rem;
 }
 
 .tertiary-copy {
@@ -131,6 +134,11 @@ blockquote {
 
 cite {
     color: var(--color-primary);
+    margin: 1rem;
+}
+
+.emphasis {
+    text-decoration: underline var(--color-primary);
 }
 
 @media ( min-width: 450px ) {
@@ -151,14 +159,22 @@ cite {
 
     .logo {
         font-size: 2rem;
+        margin-right: 1.5rem;
     }
 }
 
+
+.founder-image {
+    margin-top: 1rem;
+}
 /*================================
 Header Component
 ================================*/
 header {
+    align-items: baseline;
     background-color: var(--color-primary);
+    display: flex;
+    flex-direction: column;
     padding: 2rem;
 }
 
@@ -188,8 +204,9 @@ header nav ul li {
 }
 
 header nav ul {
- 
-    margin: 2rem 0 0 ;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0 0;
     padding: 0;
 }
 
@@ -197,7 +214,7 @@ header nav ul {
     color: var(--color-secondary);
 }
 
-@media ( min-width: 470px ) {
+@media ( min-width: 500px ) {
 
     header nav ul {
         display: flex;
@@ -206,6 +223,10 @@ header nav ul {
 
     header nav ul li {
         margin: 0 .5rem;
+    }
+
+    header {
+        flex-direction: row;
     }
 
 }
@@ -239,31 +260,6 @@ html {
 }
 
 /*================================
-Examples
-================================*/
-
-figure {
-    background-image:linear-gradient(#f0f0f0, #fcfcfc);
-    border-top: .5rem solid #222;
-    margin: 1rem; 
-    padding: 1rem;
-}
-
-.swatches {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.typography {
-    display: flex;
-}
-
-.typography-example {
-    max-width: 20rem;
-    padding-left: 2rem;
-}
-
-/*================================
 Link-Button Component
 ================================*/
 
@@ -277,6 +273,7 @@ Link-Button Component
 .link-button-hero, .link-button-hero:visited{
     background-color: var(--color-primary-dark);
     padding: 1rem;
+    font-family: var(--font-primary);
 }
 
 .link-button-normal, .link-button-normal:visited{
@@ -331,7 +328,7 @@ Accordion Component
 ================================*/
 
 details {
-    margin-bottom: 1rem;
+    margin: 1rem 0;
 }
 
 details div {
@@ -351,9 +348,6 @@ summary {
 
 /*================================
 Form Component
-
-
-For some reason I can't figure out how to get these to center in the figure.
 ================================*/
 form label {
     display: block;
@@ -361,11 +355,21 @@ form label {
     font-weight: bold;
 }
 
-input, textarea, select, submit {
+input, textarea {
+    padding: .25rem;
+    margin: 1rem;
+    min-width: 15rem;
+}
+
+select, submit {
     padding: .25rem;
     text-align: center;
     margin: 1rem;
     min-width: 15rem;
+}
+
+textarea {
+    min-height: 5rem;
 }
 
 form figure div {
@@ -393,6 +397,33 @@ form figure input:focus {
     border: solid .25rem var(--color-secondary);
 }
 
+.form-join {
+    background-color: var(--color-secondary-light);
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 2rem;
+    max-width: 25rem;
+    padding: 1rem 5rem;
+    color: white;
+}
+
+.join-photo {
+    align-items: center;
+    background-image: url(images/join.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    font-size: 4rem;
+    height: 50vh;
+    justify-content: center;
+    margin: 1rem auto 0;
+    max-width: 35rem;
+    text-align: center;
+    text-shadow: 4px 3px var(--color-primary);
+}
 
 /*================================
 Secondary Navigation
@@ -529,6 +560,7 @@ Animations
     flex-direction: column;
     height: 85vh;
     justify-content: space-evenly;
+    text-align: center;
 }
 
 .hero-block-info {
@@ -539,6 +571,7 @@ Animations
     flex-direction: column;
     margin: 1rem, 2rem;
     max-width: 30rem;
+    text-align: left;
 }
 
 .hero-block-info a {
@@ -550,19 +583,21 @@ Animations
 }
 
 .hero-block h1 {
-    text-align: center;
-    font-size: 2rem;
+    font-size: var(--size-heading-one);
     margin: 1rem 2rem;
+    text-align: center;
+    text-shadow: .15rem .2rem var(--color-secondary);
+
 }
 
 .hero-block div {
     margin: 1rem;
 }
 
-@media ( min-width: 850px ) {
+@media ( min-width: 1100px ) {
 
     .hero-block h1 {
-        font-size: 3.5rem;
+        font-size: var(--size-heading-two);
     }
     
     .hero-block {
@@ -583,12 +618,18 @@ Information Cards
 .info-card-article {
     border: .25rem solid;
     color: var(--color-secondary-light);
-    margin: auto;
+    margin: 1rem auto;
     max-width: 20rem;
 }
 
 .info-card-article a, .info-card-profile a, .info-card-action a {
     text-decoration: none;
+}
+
+.article-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
 }
 
 .info-card-article:hover {
@@ -612,14 +653,16 @@ Information Cards
 }
 
 .info-card-action {
-    background-image: url(images/register.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background-color: var(--color-secondary-light);
     margin: auto;
     max-width: 25rem;
+    min-width: 20rem;
     padding: .75rem;
     text-align: center;
+}
+
+.info-card-action a svg {
+    padding-top: 2rem;
 }
 
 .info-card-action h4, .info-card-action p {
@@ -649,6 +692,10 @@ Information Cards
     .contact-info {
         position: static;
     }
+
+    .article-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 
 @media ( min-width: 875px ) {
@@ -659,6 +706,14 @@ Information Cards
 
     .info-card-article h4 {
         margin: 0 1rem;
+    }
+
+    .info-card-article {
+        max-width: 25rem;
+    }
+
+    .article-container {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 /*================================
@@ -713,6 +768,9 @@ Callouts
         grid-template-columns: repeat(3, 1fr);
     }
 
+    .info-card-action {
+        min-width: 15rem;
+    }
 }
 /*================================
 Animations
